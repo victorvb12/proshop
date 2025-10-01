@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ProShop • Receipt</title>
+  <link rel="stylesheet" href="styles.css"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container topbar">
+      <button id="menuBtn" class="menu-btn">☰</button>
+      <div class="logo"><a href="index.html">ProShop</a></div>
+      <div class="nav-search"><input class="search" placeholder="Search products…"></div>
+      <nav id="navLinks" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="checkout.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h1>Receipt</h1>
+    <div class="panel" style="max-width:760px">
+      <p class="space-between"><strong>Order:</strong><span id="orderId"></span></p>
+      <p class="space-between"><strong>Status:</strong><span id="status" class="tag"></span></p>
+      <p class="space-between"><strong>Paid at:</strong><span id="paidAt"></span></p>
+      <div class="divider"></div>
+      <table class="table"><thead><tr><th>Item</th><th>Qty</th></tr></thead><tbody id="items"></tbody></table>
+      <p class="space-between" style="margin-top:12px"><span>Total</span><strong id="total">$0.00</strong></p>
+      <button id="printBtn" class="btn btn-primary" style="margin-top:10px">Print</button>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container inner"><small>© <span id="year"></span> ProShop</small></div></footer>
+
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const m=document.getElementById('menuBtn'),n=document.getElementById('navLinks'); m.addEventListener('click',()=>n.classList.toggle('open'));
+  </script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/receipt.js"></script>
+</body>
+</html>

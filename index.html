@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ProShop • Home</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="header">
+    <div class="container topbar">
+      <button id="menuBtn" class="menu-btn">☰</button>
+      <div class="logo"><a href="index.html">ProShop</a></div>
+      <div class="nav-search">
+        <input id="search" class="search" type="search" placeholder="Search for products…" />
+        <select id="sort" class="input" style="max-width:160px">
+          <option value="featured">Featured</option>
+          <option value="priceAsc">Price ↑</option>
+          <option value="priceDesc">Price ↓</option>
+          <option value="nameAsc">Name A–Z</option>
+        </select>
+      </div>
+      <nav id="navLinks" class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="category.html">Categories</a>
+        <a href="checkout.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h1>Professional E-commerce</h1>
+    <p class="muted">Browse the catalog. Add to cart. Fast checkout (no login).</p>
+
+    <div id="catList" style="margin-top:10px"></div>
+    <section id="grid" class="grid cols-4"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="container inner"><small>© <span id="year"></span> ProShop</small></div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const m=document.getElementById('menuBtn'), n=document.getElementById('navLinks');
+    m.addEventListener('click',()=>n.classList.toggle('open'));
+  </script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/core.js"></script>
+  <script type="module" src="js/catalog.js"></script>
+</body>
+</html>
