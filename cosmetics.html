@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ProShop • Cosmetics</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container topbar">
+      <button id="menuBtn" class="menu-btn">☰</button>
+      <div class="logo"><a href="index.html">ProShop</a></div>
+      <div class="nav-search">
+        <input class="search" placeholder="Search…">
+        <select class="input" style="max-width:160px">
+          <option>Featured</option><option>Price ↑</option><option>Price ↓</option><option>Name A–Z</option>
+        </select>
+      </div>
+      <nav id="navLinks" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="category.html" class="active">Categories</a>
+        <a href="checkout.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <a href="category.html" class="muted">← Back to Categories</a>
+    <h1>Cosmetics</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="all">All</button>
+      <button class="tab" data-tab="gents">Gents</button>
+      <button class="tab" data-tab="female">Female</button>
+    </div>
+
+    <!-- Content grid (filters by data-gender) -->
+    <section id="cosmeticsGrid" class="grid cols-4">
+      <!-- Sample cards (replace with real items) -->
+      <article class="card" data-gender="gents">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Beard Oil</div>
+          <div class="muted">For gents</div>
+          <div class="price">$9.99</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+
+      <article class="card" data-gender="female">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Matte Lipstick</div>
+          <div class="muted">For female</div>
+          <div class="price">$12.50</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+
+      <article class="card" data-gender="gents">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Aftershave</div>
+          <div class="muted">For gents</div>
+          <div class="price">$7.50</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+
+      <article class="card" data-gender="female">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Face Serum</div>
+          <div class="muted">For female</div>
+          <div class="price">$14.99</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container inner"><small>© <span id="year"></span> ProShop</small></div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const m=document.getElementById('menuBtn'),n=document.getElementById('navLinks');
+    m.addEventListener('click',()=>n.classList.toggle('open'));
+
+    // Tabs logic
+    const tabs=document.querySelectorAll('.tab');
+    const cards=[...document.querySelectorAll('#cosmeticsGrid .card')];
+    tabs.forEach(t=>{
+      t.addEventListener('click',()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const sel=t.dataset.tab;
+        cards.forEach(c=>{
+          const g=c.dataset.gender;
+          c.style.display = (sel==='all' || sel===g) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/core.js"></script>
+  <script type="module" src="js/category_page.js"></script>
+</body>
+</html>

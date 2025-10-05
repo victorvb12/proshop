@@ -114,3 +114,10 @@ a{color:#fff;text-decoration:none}
   .cat-tiles{ grid-template-columns:1fr; }
 }
 /* (Removed the stray trailing "/" that broke CSS parsing) */
+/* Tabs */
+.tabs{display:flex;gap:8px;margin:10px 0 16px}
+.tab{
+  padding:10px 14px;border:1px solid var(--border);background:#141926;color:#fff;border-radius:12px;cursor:pointer;
+}
+.tab.active{background:var(--accent);border-color:#b44c00}
+

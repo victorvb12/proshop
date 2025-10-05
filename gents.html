@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ProShop • Gents</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container topbar">
+      <button id="menuBtn" class="menu-btn">☰</button>
+      <div class="logo"><a href="index.html">ProShop</a></div>
+      <div class="nav-search">
+        <input class="search" placeholder="Search…">
+        <select class="input" style="max-width:160px">
+          <option>Featured</option><option>Price ↑</option><option>Price ↓</option><option>Name A–Z</option>
+        </select>
+      </div>
+      <nav id="navLinks" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="category.html" class="active">Categories</a>
+        <a href="checkout.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <a href="category.html" class="muted">← Back to Categories</a>
+    <h1>Gents</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="all">All</button>
+      <button class="tab" data-tab="fashion">Fashion</button>
+      <button class="tab" data-tab="cosmetics">Cosmetics</button>
+      <button class="tab" data-tab="accessories">Accessories</button>
+    </div>
+
+    <section id="gentsGrid" class="grid cols-4">
+      <!-- Example products -->
+      <article class="card" data-type="fashion">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Men’s Shirt</div>
+          <div class="muted">Fashion</div>
+          <div class="price">$18.50</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="cosmetics">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Beard Oil</div>
+          <div class="muted">Cosmetics</div>
+          <div class="price">$9.99</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+
+      <article class="card" data-type="accessories">
+        <div class="card-media"></div>
+        <div class="card-body">
+          <div class="card-title">Leather Belt</div>
+          <div class="muted">Accessories</div>
+          <div class="price">$12.00</div>
+          <div class="card-actions"><button class="btn btn-primary">Add to cart</button></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container inner"><small>© <span id="year"></span> ProShop</small></div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const m=document.getElementById('menuBtn'),n=document.getElementById('navLinks');
+    m.addEventListener('click',()=>n.classList.toggle('open'));
+
+    // Tabs filter
+    const tabs=document.querySelectorAll('.tab');
+    const cards=[...document.querySelectorAll('#gentsGrid .card')];
+    tabs.forEach(t=>{
+      t.addEventListener('click',()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const sel=t.dataset.tab;
+        cards.forEach(c=>{
+          const g=c.dataset.type;
+          c.style.display=(sel==='all'||sel===g)?'':'none';
+        });
+      });
+    });
+  </script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/core.js"></script>
+  <script type="module" src="js/category_page.js"></script>
+</body>
+</html>
